@@ -1,0 +1,21 @@
+﻿@using Microsoft.AspNetCore.Blazor.Components
+@using Microsoft.JSInterop
+
+<h1>@Message</h1>
+<p>Result: @echoResult</p>
+<button class="btn btn-primary" onclick="@Prompt">Echo</button>
+
+@functions {
+int currentCount = 0;
+string echoResult;
+
+[Parameter]
+private string Message { get; set; }
+
+void Prompt()
+{
+    echoResult = ((IJSInProcessRuntime)JSRuntime.Current).Invoke<string>(
+            "exampleJsFunctions.showPrompt",
+            Message);
+}
+}

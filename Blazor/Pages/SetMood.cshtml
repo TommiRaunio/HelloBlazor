@@ -1,0 +1,19 @@
+﻿@using Blazor.Models
+@page "/setmood"
+
+<h1>What's your mood</h1>
+
+<p>This demoes state management in Blazor app</p>
+
+<input placeholder="Your mood?" bind="@mood" />
+<button onclick="@SetTodaysMood">SetMood</button>
+
+@functions {
+    string mood;
+
+    void SetTodaysMood()
+    {
+        MockStateMachine.Mood = mood;
+        this.StateHasChanged();  
+    }
+}

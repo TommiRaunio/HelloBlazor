@@ -1,0 +1,24 @@
+﻿@using Microsoft.AspNetCore.Blazor.Components
+@using Microsoft.JSInterop
+@page "/counter"
+
+<h1>Counter</h1>
+
+<p>Current count: @currentCount</p>
+
+<input placeholder="Add me" bind="@IncrementAmount" />
+<button class="btn btn-primary" onclick="@IncrementCount">Add</button>
+
+@functions {
+    int currentCount = 0;
+    string echoResult;
+
+    private int IncrementAmount { get; set; }
+
+    void IncrementCount()
+    {
+        currentCount += IncrementAmount;
+    }
+
+
+}

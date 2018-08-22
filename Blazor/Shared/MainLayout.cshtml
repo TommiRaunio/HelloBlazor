@@ -1,0 +1,34 @@
+@using Blazor.Models
+@inherits Microsoft.AspNetCore.Blazor.Layouts.BlazorLayoutComponent
+
+<div class="sidebar">
+    <NavMenu />
+</div>
+
+<div class="main">
+    <div class="top-row px-4">
+        <span class="col-md-4">Today you are feeling '@_currentMood'</span>
+        <a href="http://blazor.net" target="_blank" class="ml-md-auto">About</a>
+    </div>
+
+    <div class="content px-4">
+        @Body
+    </div>
+</div>
+
+@functions
+{
+    private string _currentMood;
+    protected override void OnInit()
+    {
+        Console.WriteLine("Hello from Blazor code");
+        MockStateMachine.StateChanged += SimpleStateMachineOnStateChanged;
+    }
+
+    private void SimpleStateMachineOnStateChanged(object sender, EventArgs e)
+    {
+        _currentMood = MockStateMachine.Mood;
+        StateHasChanged();
+    }
+
+}
